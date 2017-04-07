@@ -13,4 +13,8 @@
       "js": ["traceStory.js"]
     }
   ]
+
+  "permissions": [
+    "tabs",
+  ]
 }
