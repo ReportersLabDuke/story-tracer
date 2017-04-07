@@ -10,7 +10,7 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["traceStory.js"]
+      "js": ["traceStory.js", "ground-truth-bundle.js"]
     }
   ]
 
