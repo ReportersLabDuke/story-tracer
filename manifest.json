@@ -10,8 +10,13 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["traceStory.js", "ground-truth-bundle.js"]
+      "js": ["ground-truth-bundle2.js", "traceStory.js"]
     }
+  ],
+
+  "permissions": [
+    "http://*/",
+    "https://*/"
   ]
 
 }
