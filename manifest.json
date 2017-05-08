@@ -5,12 +5,16 @@
   "description": "Finds the source of original reporting in a story",
   "version": "0.1.0",
 
+  "background" : {
+    "scripts": ["ground-truth-bundle.js", "traceStory.js"] 
+  },
+
   "content_scripts": [
     {
       "matches": [
         "<all_urls>"
       ],
-      "js": ["ground-truth-bundle2.js", "traceStory.js"]
+      "js": ["getUrlFromPage.js"]
     }
   ],
 
