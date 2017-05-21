@@ -2,9 +2,11 @@ pageUrl = window.location.href;
 
 
 chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
-  if (response[0].score > 0.3) {
-    document.body.innerHTML += "<dialog>" + "This page may be based on content from: " + "<a href='" + response[0].source + "'>" + response[0].source + "</a> <br><button>Close</button></dialog>";
-    var dialog = document.querySelector("dialog");
+  if (response[0][0].score > 0.3) {
+    var n = document.createElement("dialog");
+    document.body.appendChild(n);
+    var dialog = document.querySelector("dialog")
+    dialog.innerHTML += "This page may be based on content from: " + "<a href='" + response[0][0].url + "'>" + response[0][0].url + "</a> <br><button>Close</button>";
     dialog.querySelector("button").addEventListener("click", function() {
       dialog.close();
       dialog.parentNode.removeChild(dialog);
