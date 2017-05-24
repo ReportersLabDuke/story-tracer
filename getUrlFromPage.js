@@ -6,7 +6,11 @@ chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
     var n = document.createElement("dialog");
     document.body.appendChild(n);
     var dialog = document.querySelector("dialog")
-    dialog.innerHTML += "This page may be based on content from: " + "<a href='" + response[0][0].url + "'>" + response[0][0].url + "</a> <br><button>Close</button>";
+    dialog.innerHTML += "This page may be based on content from: " + createSourceLink(response[0][0]) + "<br><button>Close</button>";
+    if (response[0].length > 1) {
+      var listDiv = "<div class='sourcelist'><p>Hover here to see more sources: </p>" + createLinkList(response[0].slice(1)) + "</div>";
+      dialog.innerHTML += listDiv;
+    }
     dialog.querySelector("button").addEventListener("click", function() {
       dialog.close();
       dialog.parentNode.removeChild(dialog);
@@ -17,3 +21,17 @@ chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
   console.log("RESULT RESPONSE: " + JSON.stringify(response));
 });
 
+function createSourceLink (sourceObject) {
+  return "<a href='" + sourceObject.url + "'>" + sourceObject.url + "</a>"; 
+}
+
+function createLinkList (linkArray) {
+  var html = "<ul>";
+  for (i = 0; i < linkArray.length; i++) {
+    html += "<li>";
+    html += createSourceLink(linkArray[i]);
+    html += "</li>";
+  }
+  html += "</ul>";
+  return html;
+}

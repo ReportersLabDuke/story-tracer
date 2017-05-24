@@ -14,7 +14,8 @@
       "matches": [
         "<all_urls>"
       ],
-      "js": ["getUrlFromPage.js"]
+      "js": ["getUrlFromPage.js"],
+      "css": ["dialogStyle.css"]
     }
   ],
 
