@@ -10,6 +10,9 @@ chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
     if (response[0].length > 1) {
       var listDiv = "<div class='sourcelist'>" + createLinkList(response[0].slice(1)) + "</div>";
       dialog.innerHTML += listDiv;
+    } else {
+      var moreButton = document.querySelector("#more");
+      morebutton.style.display = "none";
     }
     dialog.querySelector("#close").addEventListener("click", function() {
       dialog.close();
@@ -19,8 +22,12 @@ chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
       var moreSources = document.querySelector(".sourcelist");
       if (moreSources.style.height !== "auto") {
         moreSources.style.height = "auto";
+        moreSources.style.overflowY = "scroll";
+        moreSources.style.maxHeight = "500px";
       } else {
         moreSources.style.height = "";
+        moreSources.style.overflowY = "";
+        moreSources.style.maxHeight = "";
       }      
     });
     dialog.style = "position: fixed; width: 400px; height: auto; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: hidden; text-align: center; top: 25px; left: calc(100% - 425px);";
