@@ -1,8 +1,8 @@
 .sourcelist {
-  height: 1.0em;
-  line-height: 1.0;
+  height: 0px;
+  overflow: hidden;
 }
 
-.sourcelist:hover {
+#more:hover ~ .sourcelist {
   height: auto;
 }
