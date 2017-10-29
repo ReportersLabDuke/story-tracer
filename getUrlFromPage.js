@@ -11,8 +11,8 @@ chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
       var listDiv = "<div class='sourcelist'>" + createLinkList(response[0].slice(1)) + "</div>";
       dialog.innerHTML += listDiv;
     } else {
-      var moreButton = document.querySelector("#more");
-      morebutton.style.display = "none";
+      var moreButton = dialog.querySelector("#more");
+      moreButton.style.display = "none";
     }
     dialog.querySelector("#close").addEventListener("click", function() {
       dialog.close();
