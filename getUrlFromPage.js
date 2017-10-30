@@ -30,7 +30,7 @@ chrome.runtime.sendMessage({currentUrl: pageUrl}, function(response) {
         moreSources.style.maxHeight = "";
       }      
     });
-    dialog.style = "position: fixed; width: 400px; height: auto; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: hidden; text-align: center; top: 25px; left: calc(100% - 425px);";
+    dialog.style = "position: fixed; width: 400px; height: auto; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 150000000030; overflow: hidden; text-align: center; top: 25px; left: calc(100% - 425px);";
     dialog.show();
   }  
   console.log("RESULT RESPONSE: " + JSON.stringify(response));
