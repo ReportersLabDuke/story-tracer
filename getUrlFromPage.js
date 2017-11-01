@@ -7,13 +7,13 @@ var excluded_urls = [
 
 if (!checkExcludedUrls(pageUrl, excluded_urls)) {
   chrome.runtime.sendMessage({ currentUrl: pageUrl }, function (response) {
-    if (response[0][0].score > 0.3) {
+    if (response.result.source.indexOf(pageUrl) === -1 && pageUrl.indexOf(response.result.source) == -1) {
       var n = document.createElement("dialog");
       document.body.appendChild(n);
       var dialog = document.querySelector("dialog")
-      dialog.innerHTML += "This page may be based on content from: " + createSourceLink(response[0][0]) + "<br><button id='close'>Close</button><button id='more'>More sources...</button>";
-      if (response[0].length > 1) {
-        var listDiv = "<div class='sourcelist'>" + createLinkList(response[0].slice(1)) + "</div>";
+      dialog.innerHTML += "This page may be based on content from: " + createSourceLink(response.result, "source") + "<br><button id='close'>Close</button><button id='more'>More sources...</button>";
+      if (response.path[0].length > 1) {
+        var listDiv = "<div class='sourcelist'>" + createLinkList(response.path[0].slice(1), "url") + "</div>";
         dialog.innerHTML += listDiv;
       } else {
         var moreButton = dialog.querySelector("#more");
@@ -42,15 +42,15 @@ if (!checkExcludedUrls(pageUrl, excluded_urls)) {
   });
 }
 
-function createSourceLink (sourceObject) {
-  return "<a href='" + sourceObject.url + "'>" + sourceObject.url + "</a>"; 
+function createSourceLink (sourceObject, attribute) {
+  return "<a href='" + sourceObject[attribute] + "'>" + sourceObject[attribute] + "</a>"; 
 }
 
-function createLinkList (linkArray) {
+function createLinkList (linkArray, attribute) {
   var html = "<ul>";
   for (i = 0; i < linkArray.length; i++) {
     html += "<li>";
-    html += createSourceLink(linkArray[i]);
+    html += createSourceLink(linkArray[i], attribute);
     html += "</li>";
   }
   html += "</ul>";
