@@ -3,7 +3,7 @@
 
   "name": "StoryTracer",
   "description": "Finds the source of original reporting in a story",
-  "version": "0.1.3",
+  "version": "0.1.4",
 
   "background" : {
     "scripts": ["ground-truth-bundle.js", "traceStory.js"] 
